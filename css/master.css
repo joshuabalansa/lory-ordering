@@ -1,0 +1,98 @@
+/* Font Family Imports */
+@font-face {
+    font-family: 'Manrope';
+    src: local('Manrope'), url('../fonts/Manrope/Manrope-VariableFont_wght.ttf')
+   }
+/* texts that uses font manrope */
+body{
+    font-family: "Manrope", sans-serif;
+    font-style: normal;
+    font-weight: 500; 
+    overflow-y: hidden;
+}
+/* Fonts - End */
+div.profile-info{
+    background-image: linear-gradient(180deg, #2cc4ab, #1d9b87, #1a8092);
+}
+div.logout-container{
+    background-image: linear-gradient(90deg, #30ab97 23%, #1b8b70);
+}
+nav.side-navigation {
+    background-image: linear-gradient(180deg, #2cc4ab, #1d9b87, #1a8092);
+    height: 90vh; /* Set height to 75% of viewport height */
+}
+li{
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.25);
+}
+/* Table */
+.table-container {
+    overflow-x: auto; /* Enable horizontal scrollbar */
+    max-width: 100%; /* Limit container width */
+}
+.table {
+    white-space: nowrap; /* Prevent line breaks in cells */
+}
+td.table-item {
+    width: 250px;
+    background-image: radial-gradient(circle at 50% 50%, #9dc896, #30ab97);
+    border: 5px solid #fff; /* Add border for clarity */
+    background-color: #fff; /* Add background color for contrast */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Display ellipsis (...) for overflowed text */
+}
+img.menu-item{
+    max-width: 100px;
+    max-height: 75px;
+}
+/* Pills Button */
+.btn-custom {
+    width: 150px; /* Make buttons fill entire width of the cell */
+    height: 35px; /* Make buttons fill entire height of the cell */
+    border-color: #000;
+    border-radius: 15px;
+    font-weight: 700;
+}
+.btn-active{
+    background-image: linear-gradient(180deg, #2cc4ab, #1d9b87, #1a8092) !important;
+}
+.btn-custom:hover{
+    border-color: #000;
+    background-image: radial-gradient(circle at 50% 50%, #9dc896, #30ab97);
+}
+.pills tr {
+    border-color: transparent; /* Set border color to transparent */
+}
+/* Order List */
+div.orderlist-container, div.salesdetails-container, div.detailslist-container {
+    background-image: linear-gradient(180deg, #2cc4ab, #1d9b87, #1a8092);
+    height: 90vh; /* Set height to 75% of viewport height */
+}
+div.order-list, div.salesdetails-list, div.details-list{
+    margin: 40px 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    height: 85%;
+}
+div.customer-id {
+    border: #000 1px solid;
+    border-radius: 20px;
+}
+div.list-item{
+    font-size: 10px;
+}
+div.order-items, div.salesdetails-items, div.details-items{
+    height: 300px;
+    overflow-y: auto;
+}
+button.btn-x{
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+}
+button.btn-c{
+    border-radius: 50%;
+    height: 75px;
+    width: 75px;
+}

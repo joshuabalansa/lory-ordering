@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cashier Page</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="shortcut icon" href="images/longciomay.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="css/master.css">
+</head>
+<body onload="checkOnload()">
+  <!-- Top Nav Bar - START -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Profile Icon, Name and Role Container - START -->
+            <div class="profile-info col-2 text-center">
+                <div class="row">
+                    <!-- Name and Role - START -->
+                    <div class="col-12 pt-3">
+                        <div class="row">
+                            <!-- Name -->
+                            <div class="col-12 text-nowrap">
+                                <h6>VIEWING DECK 4:</h6>
+                            </div>
+                            <!-- Role -->
+                            <div class="col-12">
+                                <h6>LORY’S SEAFOOD EATERY</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Name and Role - END -->
+                </div>
+            </div>
+            <!-- Profile, Name and Role Container - END -->
+            <!-- Account Welcome and Log-out - START -->
+            <div class="logout-container col-10 text-end">
+                <div class="row">
+
+                      <!-- Navbar for Hi Admin! and Logout dropdown -->
+                    <nav class="navbar navbar-light ">
+                      <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Settings
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" id="logout-btn" href="#">Logout</a>
+                        </div>
+                      </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- Account Welcome and Log-out - START -->
+        </div>
+    </div>
+    <!-- Top Nav Bar - END -->
+    <!-- Body - START -->
+    <!-- Modal for Quantity -->
+    <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderModalLabel">Order Quantity</h5>
+                </div>
+                <div class="modal-body">
+                        <!-- Contents to be loaded -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="placeOrder" class="btn btn-primary" onclick="placeOrder('.order-items .row-items')" value="false"
+                    data-bs-toggle="modal" data-bs-target="#orderModal">Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Confirmation Modal -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Options</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Please select an action.</p>
+                </div>
+                <div class="modal-footer">
+                    <!-- Add button to change quantity -->
+                    <button type="button" class="btn btn-warning" id="changeQuantityBtn" data-bs-toggle="modal" data-bs-target="#orderModal">Change Quantity</button>
+                    <!-- Add button to delete item -->
+                    <button type="button" class="btn btn-danger" id="deleteItemBtn">Delete Item</button>
+                    <!-- Add button to close modal -->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Side Navigation -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Side Nav - START -->
+            <nav class="side-navigation col-2 d-flex flex-column">
+                <!-- New Item For Side Nav - START -->
+                <ul class="list-unstyled flex-grow-1">
+                    <li class="p-3 d-flex m-3">
+                        <img src="images/food-icon.svg" alt="Food Icon" width="25%" height="25%">
+                        <div class="text-center flex-grow-1 pt-2">
+                            <h6>Menu</h6>
+                        </div>
+                    </li>
+                </ul>
+                <!-- New Item For Side Nav - END -->
+            </nav>
+            <!-- Side Nav - END -->
+            <!-- Content - START -->
+            <div class="col-7">
+                <div class="row">
+                    <div class="col-12 table-container text-center d-flex justify-content-center">
+                        <!-- Pills -->
+                        <table class="table pills">
+                            <tbody>
+                                <tr>
+                                    <td><button class="btn btn-custom btn-active" onclick="filterItems('all')" id="all">ALL</button></td>
+                                    <td><button class="btn btn-custom" onclick="filterItems('special')" id="special">SPECIAL</button></td>
+                                    <td><button class="btn btn-custom" onclick="filterItems('main')" id="main">MAIN</button></td>
+                                    <td><button class="btn btn-custom" onclick="filterItems('beverages')" id="beverages">BEVERAGES</button></td>
+                                </tr>
+                                <tr>
+                                    <td><button class="btn btn-custom" onclick="filterItems('small-orders')" id="small-orders">SMALL ORDERS</button></td>
+                                    <td><button class="btn btn-custom" onclick="filterItems('appetizers')" id="appetizers">APPETIZERS</button></td>
+                                    <td><button class="btn btn-custom" onclick="filterItems('sides')" id="sides">SIDES</button></td>
+                                    <td><button class="btn btn-custom" onclick="filterItems('desserts')" id="desserts">DESSERTS</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12 table-container text-center">
+                        <table class="table items">
+                            <tbody>
+                                <tr id="append-1">
+                                    <!-- Add more cells as needed -->
+                                </tr>
+                                <tr id="append-2">
+                                    <!-- Add more cells as needed -->
+                                </tr>
+                                <!-- Add more rows as needed -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Content - END -->
+            <!-- Order List - START -->
+            <div class="orderlist-container col-3 text-center">
+                <div class="order-list">
+                    <div class="row">
+                        <!-- Customer ID -->
+                        <div class="col-12">
+                            <!-- <div class="customer-id m-2 pt-3 p-2">
+                                <h6><b>Customer ID - 0000000013</b></h6>
+                            </div> -->
+                            <!-- List -->
+                        </div>
+                        <!-- Order Items -->
+                        <div class="order-items col-10 offset-1 p-3">
+                            <!-- Headers -->
+                            <div class="row mb-2">
+                                <div class="col-3 list-item p-0"><b>Qty</b></div>
+                                <div class="col-6 list-item p-0"><b>Item</b></div>
+                                <div class="col-3 list-item p-0"><b>Total</b></div>
+                            </div>
+                            <!-- Contents -->
+                            
+                        </div>
+                        <div class="col-12 pt-3">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h6><b>Order Total</b></h6>
+                                </div>
+                                <div class="col-12">
+                                    <h6 id="order-total-list">0</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-1">
+                            <!-- <button class="btn btn-c btn-outline-success" onclick="submit()"> -->
+                            <button class="btn btn-c btn-outline-success" onclick="copyRowItems('place-order', 'place-order-total')" data-toggle="modal" data-target="#confirmOrder">
+                                <img src="images/check.svg" alt="Check" height="100%" width="100%">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Order List - END -->
+            <!-- Modal -->
+            <div class="modal fade" id="confirmOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirm Order</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!--  -->
+                        <!-- Order Items -->
+                        <div class="place-order col-10 offset-2">
+                            <!-- Headers -->
+                            <div class="row mb-2">
+                                <div class="col-3 list-item p-0"><b>Qty</b></div>
+                                <div class="col-6 list-item p-0"><b>Item</b></div>
+                                <div class="col-3 list-item p-0"><b>Total</b></div>
+                            </div>
+                            <!-- Contents -->
+                        </div>
+                        <div class="col-12 pt-3 text-center">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h6><b>Order Total</b></h6>
+                                </div>
+                                <div class="col-12">
+                                    <h6 id="place-order-total">0</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="submitButton" onclick="submit()" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#finalModal" >Place Order</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal for Bill-out and Adding new Order -->
+            <div class="modal fade" id="finalModal" aria-hidden="true" aria-labelledby="finalModalLabel" tabindex="-1">
+                <div class="modal-dialog modal-fullscreen">
+                  <div class="modal-content">
+                    <div class="modal-body finalModal">
+                        <div class="col-4 offset-4 text-center justify-content-center mb-5 border border-2">
+                            <h5 class="modal-title" id="finalModalTitle"></h5>
+                        </div>
+                      <!-- Show a second modal and hide this one with the button below. -->
+                      <!--  -->
+                        <!-- Order Items -->
+                        <div class="final-order col-10 offset-1 pe-5 text-center">
+                            <!-- Headers -->
+                            <div class="row mb-2">
+                                <div class="col-2 list-item p-0"><b>Qty</b></div>
+                                <div class="col-6 list-item p-0"><b>Item</b></div>
+                                <div class="col-2 list-item p-0"><b>Total</b></div>
+                                <div class="col-2 list-item p-0"><b>Action</b></div>
+                            </div>
+                            <!-- Contents -->
+                        </div>
+                        <div class="col-12 pt-3 text-center">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h6><b>Order Total</b></h6>
+                                </div>
+                                <div class="col-12">
+                                    <h6 id="final-order-status">pending</h6>
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <h6><b>Order Total</b></h6>
+                                </div>
+                                <div class="col-12">
+                                    <h6 id="final-order-total">0</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  -->
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-secondary" onclick="hideModal()" data-dismiss="modal">Add extra food</button>
+                        <button type="button" class="btn btn-primary" onclick="billOut()">Bill-out</button>                    </div>
+                  </div>
+                </div>
+            </div>
+            <!-- Modal for Bill-out and Adding new Order -->
+            <div class="modal fade" id="totalModal" aria-hidden="true" aria-labelledby="totalModalLabel" tabindex="-1">
+                <div class="modal-dialog modal-fullscreen">
+                  <div class="modal-content">
+                    <div class="modal-body totalModal">
+                        <div class="col-4 offset-4 text-center justify-content-center mb-5 border border-2">
+                            <h5 class="modal-title" id="totalModalTitle">Bill</h5>
+                        </div>
+                        <div id="total-content" class="col-6 offset-3 justify-content-center text-center">
+                            <div id="total-order" class="col-12">
+                                <!-- Headers -->
+                                <div class="row">
+                                    <div class="col-3 list-item p-0 border border-2 border-dark"><b>Qty</b></div>
+                                    <div class="col-6 list-item p-0 border border-2 border-dark"><b>Item</b></div>
+                                    <div class="col-3 list-item p-0 border border-2 border-dark"><b>Total</b></div>
+                                </div>
+                                <!-- Contents -->
+                            </div>
+                            <div class="row mt-3">
+                                <div id="total-price" class="col-12"></div>
+                                <div id="discount" class="col-12 mt-3"></div>
+                                <div id="discounted-price" class="col-4 offset-4 border border-2 border-dark mt-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-primary" id="confirm-bill-out">Ok</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Body - END -->
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-firestore.js"></script>
+    <script src="js/firestore.js"></script>
+    
+    <script src="js/ordering.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        window.onbeforeunload = function() {
+            return "Dude, are you sure you want to leave? Think of the kittens!";
+        }
+    </script>
+
+<!-- Bootstrap and Firebase Scripts -->
+<script type="module" src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script type="module" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<!-- Firebase Auth Script -->
+<script type="module" src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js"></script>
+
+<script type="module">
+    // Import Firebase authentication functions
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+    import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDT4iaPdleCjt7K2AYVDfEaZOi6UqDHCDU",
+    authDomain: "lory-c64ec.firebaseapp.com",
+    projectId: "lory-c64ec",
+    storageBucket: "lory-c64ec.appspot.com",
+    messagingSenderId: "371071401749",
+    appId: "1:371071401749:web:f5f5ef959488fcfd78b31c",
+    measurementId: "G-TXBTQ3L6XE"
+  };
+// Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const firestore = getFirestore(app);
+
+
+
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            // If user is not logged in, redirect to login page
+            window.location.href = 'index.html';
+        }
+    });
+
+    // Logout button event listener
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+        try {
+            // Sign out the user
+            await signOut(auth);
+            // Redirect to login page
+            window.location.href = 'index.html';
+        } catch (error) {
+            console.error('Error signing out:', error);
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lory's Seafood</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/master.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <!-- Other meta tags and CSS/JS links -->
+  <link rel="icon" href="images/longciomay.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="images/longciomay.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="profile-info col-2 text-center">
+        <div class="row">
+          <div class="col-12 pt-3">
+            <div class="row">
+              <div class="col-12 text-nowrap">
+                <h6>VIEWING DECK 4:</h6>
+              </div>
+              <div class="col-12">
+                <h6>LORY’S SEAFOOD EATERY</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="logout-container col-10 text-end">
+        <div class="row">
+          <nav class="navbar navbar-light ">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Settings
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" id="logout-btn" href="#">Logout</a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Side Nav - START -->
+      <nav class="side-navigation col-2 d-flex flex-column">
+        <ul class="list-unstyled flex-grow-1">
+
+
+          <li class="p-3 d-flex m-3 dashboard">
+            <img src="img/dashboard.png" alt="Food Icon" width="25%" height="25%">
+            <div class="text-center flex-grow-1 pt-2 pl-3">
+              <h6 class="nav-item" id="dashboard-nav">Dashboard</h6>
+            </div>
+          </li>
+
+
+          <li class="p-3 d-flex m-3 data-entry">
+            <img src="img/data-entry.png" alt="Food Icon" width="25%" height="25%">
+            <div class="text-center flex-grow-1 pt-2 pl-3">
+              <h6 class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Data Entry
+              </h6>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item active" href="#" id="employee-dropdown">Employee</a>
+                <a class="dropdown-item" href="#" id="purchase-order-dropdown">Purchase Order</a>
+                <a class="dropdown-item" href="#" id="order-listing-dropdown">Order Listing</a>
+              </div>
+            </div>
+
+          </li>
+          <li class="p-3 d-flex m-3 reports">
+            <img src="img/report.png" alt="Food Icon" width="25%" height="25%">
+            <div class="text-center flex-grow-1 pt-2 pl-3">
+              <h6 class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reports
+              </h6>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item active" href="#" id="purchase-report-dropdown">Purchase Report</a>
+                <a class="dropdown-item" href="#" id="sales-report-dropdown">Sales Report</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <!-- Side Nav - END -->
+      <!-- Dashboard - START -->
+      <div class="col-10 dashboard-content" style="height:570px; width:1110px;overflow:auto;">
+        <div class="container-fluid py-4">
+          <div class="row mt-4">
+            <div class="col-lg-5 mb-lg-0 mb-4">
+              <div class="card z-index-2">
+                <div class="card-header pb-0">
+                  <h6>Purchase/Sales overview (Monthly)</h6>
+                </div>
+                <div class="card-body p-3">
+                  <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
+                    <div class="chart">
+                      <canvas id="chart-bars" class="chart-canvas"
+                        style="min-height: 170px; max-height: 170px;"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-7">
+              <div class="card z-index-2">
+                <div class="card-header pb-0">
+                  <h6>Purchase/Sales overview (Daily)</h6>
+                </div>
+                <div class="card-body p-3">
+                  <div class="chart">
+                    <canvas id="chart-line" class="chart-canvas" style="min-height: 170px; max-height: 170px;"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <!-- Dashboard - END -->
+
+      <!-- Sales - START -->
+      <div class="data-container col-7 d-none">
+        <!-- Data Entry Section -->
+        <div class="tab-pane" id="data-entry" role="tabpanel" aria-labelledby="data-entry-tab">
+          <div id="employee-form" class="mt-4">
+            <!-- Button to open modal for adding new employee -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addEmployeeModal">
+              Add New Employee
+            </button>
+          </div>
+          <!-- Table for displaying existing employees -->
+          <div id="employee-table" class="mt-4" style="height:490px; width:1120px;overflow:auto;">
+            <h6 class="text-center">Existing Employees</h6>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="employee-table-body">
+                  <!-- Table rows will be dynamically populated with employee data -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Modal for employee deletion confirmation -->
+          <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog"
+            aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Deletion</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to delete this employee?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                  <button type="button" class="btn btn-danger" id="confirm-delete-btn">Yes, delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal for adding new employee -->
+        <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog"
+          aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addEmployeeModalLabel">Add New Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- Form for adding a new employee -->
+                <div class="form-group">
+                  <label for="employee-name">Name</label>
+                  <input type="text" class="form-control" id="employee-name" required>
+                </div>
+                <div class="form-group">
+                  <label for="employee-middle-name">Middle Name</label>
+                  <input type="text" class="form-control" id="employee-middle-name">
+                </div>
+                <div class="form-group">
+                  <label for="employee-last-name">Last Name</label>
+                  <input type="text" class="form-control" id="employee-last-name" required>
+                </div>
+                <div class="form-group">
+                  <label for="employee-role">Role</label>
+                  <select class="form-control" id="employee-role" required>
+                    <option value="Customer">Customer (Ordering/Menu)</option>
+                    <option value="Cashier">Cashier</option>
+                    <option value="Cook">Cook</option>
+                    <option value="Admin">Admin</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="employee-contact">Contact Number</label>
+                  <input type="number" class="form-control" id="employee-contact" required>
+                </div>
+                <div class="form-group">
+                  <label for="employee-address">Address</label>
+                  <input type="text" class="form-control" id="employee-address" required>
+                </div>
+                <div class="form-group">
+                  <label for="employee-email">Email</label>
+                  <input type="email" class="form-control" id="employee-email" required>
+                </div>
+                <div class="form-group">
+                  <label for="employee-password">Password</label>
+                  <input type="password" class="form-control" id="employee-password" required>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save-add-employee-btn-modal">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal for displaying employee details -->
+        <div class="modal fade" id="employeeDetailsModal" tabindex="-1" role="dialog"
+          aria-labelledby="employeeDetailsModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="employeeDetailsModalLabel">Employee Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" id="employeeDetailsBody">
+                <!-- Form for displaying and editing employee details -->
+                <form id="editEmployeeForm">
+                  <div class="form-group">
+                    <label for="employee-id">Employee ID</label>
+                    <input type="text" class="form-control" id="employee-id-view" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="employee-name">Name</label>
+                    <input type="text" class="form-control" id="employee-name-view" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="employee-middle-name">Middle Name</label>
+                    <input type="text" class="form-control" id="employee-middle-name-view">
+                  </div>
+                  <div class="form-group">
+                    <label for="employee-last-name">Last Name</label>
+                    <input type="text" class="form-control" id="employee-last-name-view" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="employee-role">Role</label>
+                    <select class="form-control" id="employee-role-view" required>
+                      <option value="Customer">Customer (Ordering/Menu)</option>
+                      <option value="Cashier">Cashier</option>
+                      <option value="Cook">Cook</option>
+                      <option value="Admin">Admin</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="employee-contact">Contact Number</label>
+                    <input type="number" class="form-control" id="employee-contact-view" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="employee-address">Address</label>
+                    <input type="text" class="form-control" id="employee-address-view" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="employee-email">Email</label>
+                    <input type="email" class="form-control" id="employee-email-view" required>
+                  </div>
+                  <!-- Add password field with eye icon -->
+                  <div class="form-group">
+                    <label for="employee-password-view">Password</label>
+                    <div class="input-group">
+                      <input type="password" class="form-control" id="employee-password-view">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="toggle-password">
+                          <i class="fa fa-eye"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End of password field -->
+                  <button type="button" class="btn btn-primary" id="save-edit-employee-btn-view">Save</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Sales - END -->
+      <!-- Purchase Order Screen - START -->
+      <div class="purchase-order-container col-7 d-none">
+        <!-- Data Entry Section -->
+        <div class="tab-pane" id="data-entry" role="tabpanel" aria-labelledby="data-entry-tab">
+          <div id="purchase-order-form" class="mt-4">
+            <!-- Button to open modal for adding new employee -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPurchaseOrderModal">
+              Add New Purchase Order
+            </button>
+          </div>
+          <!-- Table for displaying existing employees -->
+          <div id="purchase-order-table" class="mt-4" style="height:490px; width:1120px;overflow:auto;">
+            <h6 class="text-center">Current Purchase Order</h6>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Comment</th>
+                  </tr>
+                </thead>
+                <tbody id="purchase-order-table-body">
+                  <!-- Table rows will be dynamically populated with employee data -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Modal for employee deletion confirmation -->
+          <div class="modal fade" id="confirmDeletePurchaseOrderModal" tabindex="-1" role="dialog"
+            aria-labelledby="confirmDeletePurchaseOrderModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="confirmDeletePurchaseOrderModalLabel">Confirm Deletion</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to delete this Purchase Order?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                  <button type="button" class="btn btn-danger" id="confirm-purchase-order-delete-btn">Yes,
+                    delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal for adding new order listing -->
+        <div class="modal fade" id="addPurchaseOrderModal" tabindex="-1" role="dialog"
+          aria-labelledby="addPurchaseOrderModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addPurchaseOrderModalLabel">Add New Order Listing</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- Form for adding a new order listing -->
+                <div class="form-group">
+                  <label for="purchase-order-datetime">Date and Time</label>
+                  <input type="datetime-local" class="form-control" id="purchase-order-datetime">
+                </div>
+                <div class="form-group">
+                  <label for="purchase-order-amount">Purchase Amount</label>
+                  <input type="number" class="form-control" id="purchase-order-amount" required>
+                </div>
+                <div class="form-group">
+                  <label for="purchase-order-comment">Comment</label>
+                  <input type="text" class="form-control" id="purchase-order-comment" required>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save-add-purchase-order-btn-modal">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Sales - END -->
+      <!-- Order Listing - START -->
+      <div class="order-listing-container col-7 d-none">
+        <!-- Data Entry Section -->
+        <div class="tab-pane" id="data-entry" role="tabpanel" aria-labelledby="data-entry-tab">
+          <div id="order-listing-form" class="mt-4">
+            <!-- Button to open modal for adding new employee -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addOrderListingModal">
+              Add New Order Listing
+            </button>
+          </div>
+          <!-- Table for displaying existing employees -->
+          <div id="order-listing-table" class="mt-4" style="height:490px; width:1120px;overflow:auto;">
+            <h6 class="text-center">Current Order Listings</h6>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Category</th>
+                    <th scope="col">Dish Name</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="order-listing-table-body">
+                  <!-- Table rows will be dynamically populated with employee data -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Modal for employee deletion confirmation -->
+          <div class="modal fade" id="confirmOrderListingDeleteModal" tabindex="-1" role="dialog"
+            aria-labelledby="confirmOrderListingDeleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="confirmOrderLisstingDeleteModalLabel">Confirm Deletion</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to delete this Order Listing?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                  <button type="button" class="btn btn-danger" id="confirm-order-listing-delete-btn">Yes,
+                    delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal for adding new order listing -->
+        <div class="modal fade" id="addOrderListingModal" tabindex="-1" role="dialog"
+          aria-labelledby="addOrderListingModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addOrderListingModalLabel">Add New Order Listing</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- Form for adding a new order listing -->
+                <div class="form-group">
+                  <label for="order-listing-category">Category</label>
+                  <select class="form-control" id="order-listing-category" required>
+                    <option value="main">Main</option>
+                    <option value="desserts">Desserts</option>
+                    <option value="sides">Sides</option>
+                    <option value="special">Special</option>
+                    <option value="small-orders">Small Orders</option>
+                    <option value="appetizers">Appetizers</option>
+                    <option value="beverages">Beverages</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="order-listing-name">Dish Name</label>
+                  <input type="text" class="form-control" id="order-listing-name">
+                </div>
+                <div class="form-group">
+                  <label for="order-listing-price">Price</label>
+                  <input type="text" class="form-control" id="order-listing-price" required>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save-add-order-listing-btn-modal">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal for displaying employee details -->
+        <div class="modal fade" id="orderListingDetailsModal" tabindex="-1" role="dialog"
+          aria-labelledby="orderListingDetailsModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="orderListingDetailsModalLabel">Order Listing Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" id="orderListingDetailsBody">
+                <!-- Form for displaying and editing employee details -->
+                <form id="editOrderListingForm">
+                  <div class="form-group">
+                    <label for="order-listing-id">Order Listing ID</label>
+                    <input type="text" class="form-control" id="order-listing-id-view" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="order-listing-id">Order Tag ID</label>
+                    <input type="text" class="form-control" id="order-listing-tag-id-view" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="order-listing-category">Category</label>
+                    <select class="form-control" id="order-listing-category-view" readonly>
+                      <option value="main">Main</option>
+                      <option value="desserts">Desserts</option>
+                      <option value="sides">Sides</option>
+                      <option value="special">Special</option>
+                      <option value="small-orders">Small Orders</option>
+                      <option value="appetizers">Appetizers</option>
+                      <option value="beverages">Beverages</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="order-listing-name">Dish Name</label>
+                    <input type="text" class="form-control" id="order-listing-name-view" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="order-listing-price">Price</label>
+                    <input type="text" class="form-control" id="order-listing-price-view" required>
+                  </div>
+                  <button type="button" class="btn btn-primary" id="save-edit-order-listing-btn-view">Save</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Sales - END -->
+      <!-- Content - START -->
+      <div class="purchase-report-container col-7 d-none">
+        <!-- Table for displaying existing employees -->
+        <div id="purchase-report-table" class="mt-4" style="height:490px; width:1120px;overflow:auto;">
+          <h6 class="text-center">Purchase Reports</h6>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Comment</th>
+                </tr>
+              </thead>
+              <tbody id="purchase-report-table-body">
+                <!-- Table rows will be dynamically populated with employee data -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal for displaying employee details -->
+      <div class="modal fade" id="purchaseReportDetailsModal" tabindex="-1" role="dialog"
+        aria-labelledby="purchaseReportDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="purchaseReportDetailsModalLabel">Purchase Report Details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="purchaseReportDetailsBody">
+              <!-- Form for displaying and editing employee details -->
+              <form id="viewPurchaseReportForm">
+                <div class="form-group">
+                  <label for="purchase-report-id">Purchase Order ID</label>
+                  <input type="text" class="form-control" id="purchase-report-id" readonly>
+                </div>
+                <div class="form-group">
+                  <label for="purchase-report-datetime">Date and Time</label>
+                  <input type="text" class="form-control" id="purchase-report-datetime-view" readonly>
+                </div>
+                <div class="form-group">
+                  <label for="purchase-report-amount">Amount</label>
+                  <input type="text" class="form-control" id="purchase-report-amount-view" readonly>
+                </div>
+                <div class="form-group">
+                  <label for="purchase-report-comment">Comment</label>
+                  <input type="text" class="form-control" id="purchase-report-comment-view" readonly>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sales-report-container col-7 d-none">
+        <!-- Table for displaying existing employees -->
+        <div id="sales-report-table" class="mt-4" style="height:490px; width:1120px;overflow:auto;">
+          <h6 class="text-center">Sales Reports</h6>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Details</th>
+                </tr>
+              </thead>
+              <tbody id="sales-report-table-body">
+                <!-- Table rows will be dynamically populated with employee data -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Details Modal -->
+        <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalLabel">Order Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Dish</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody id="details-modal-body">
+                    <!-- Details will be dynamically populated here -->
+                  </tbody>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Body - END -->
+  <!-- Bootstrap and Firebase Scripts -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <!-- Firebase Auth Script -->
+  <script type="module" src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js"></script>
+  <script src="js/adminNav.js"></script>
+  <script src="assets/js/plugins/chartjs.min.js"></script>
+  <script type="module">
+    // Import Firebase authentication functions
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+    import { getFirestore, collection, query, where, addDoc, getDocs, deleteDoc, doc, Timestamp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+    import { getDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+    import { updateDoc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js"
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDT4iaPdleCjt7K2AYVDfEaZOi6UqDHCDU",
+      authDomain: "lory-c64ec.firebaseapp.com",
+      projectId: "lory-c64ec",
+      storageBucket: "lory-c64ec.appspot.com",
+      messagingSenderId: "371071401749",
+      appId: "1:371071401749:web:f5f5ef959488fcfd78b31c",
+      measurementId: "G-TXBTQ3L6XE"
+    };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const firestore = getFirestore(app);
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const purchaseDataBar = {};
+      const salesDataBar = {};
+      const purchaseDataLine = {};
+      const salesDataLine = {};
+      const labelsBar = []; // For months
+      const labelsLine = []; // For days
+
+      try {
+        // Fetch purchase data
+        const purchasesQuerySnapshot = await getDocs(collection(firestore, 'purchases'));
+        purchasesQuerySnapshot.forEach((doc) => {
+          const data = doc.data();
+          if (data.datetime && data.datetime.seconds) {
+            const month = new Date(data.datetime.seconds * 1000).toLocaleString('default', { month: 'long' });
+            const day = new Date(data.datetime.seconds * 1000).getDate();
+            const label = `${month} ${day}`;
+
+            if (!purchaseDataBar[month]) {
+              purchaseDataBar[month] = 0;
+            }
+            purchaseDataBar[month] += data.amount;
+
+            if (!purchaseDataLine[label]) {
+              purchaseDataLine[label] = 0;
+            }
+            purchaseDataLine[label] += data.amount;
+
+            if (!labelsBar.includes(month)) {
+              labelsBar.push(month);
+            }
+
+            if (!labelsLine.includes(label)) {
+              labelsLine.push(label);
+            }
+          } else {
+            console.warn('Missing datetime for purchase document:', doc.id);
+          }
+        });
+
+        // Fetch sales data
+        const queueQuerySnapshot = await getDocs(collection(firestore, 'sales'));
+
+          queueQuerySnapshot.forEach((queueDoc) => {
+            const queueData = queueDoc.data();
+            if (queueData.date && queueData.date.seconds) {
+              const date = new Date(queueData.date.seconds * 1000);
+              const day = date.getDate();
+              const month = new Date(queueData.date.seconds * 1000).toLocaleString('default', { month: 'long' });
+              const label = `${month} ${day}`;
+
+              if (!salesDataBar[month]) {
+                salesDataBar[month] = 0;
+              }
+              if (!salesDataLine[label]) {
+                salesDataLine[label] = 0;
+              }
+
+              if (queueData.status == 'bill-out') {
+                const total = parseFloat(queueData.total);
+                salesDataBar[month] += total;
+                salesDataLine[label] += total;
+              }
+
+              if (!labelsBar.includes(month)) {
+                labelsBar.push(month);
+              }
+
+              if (!labelsLine.includes(label)) {
+                labelsLine.push(label);
+              }
+            }
+          });
+
+
+        // Convert aggregated data to arrays for Chart.js
+        const purchaseDataArrayBar = labelsBar.map(month => purchaseDataBar[month] || 0);
+        const salesDataArrayBar = labelsBar.map(month => salesDataBar[month] || 0);
+
+        const purchaseDataArrayLine = labelsLine.map(day => purchaseDataLine[day] || 0);
+        const salesDataArrayLine = labelsLine.map(day => salesDataLine[day] || 0);
+
+        // Reverse the line chart data arrays and labels to display from first day to last day
+
+        console.log('Purchase Data for Bar Chart:', purchaseDataArrayBar);
+        console.log('Sales Data for Bar Chart:', salesDataArrayBar);
+        console.log('Purchase Data for Line Chart:', purchaseDataArrayLine);
+        console.log('Sales Data for Line Chart:', salesDataArrayLine);
+
+        // Bar Chart
+        const barCtx = document.getElementById('chart-bars').getContext('2d');
+        const barChart = new Chart(barCtx, {
+          type: 'bar',
+          data: {
+            labels: labelsBar,
+            datasets: [
+              {
+                label: 'Purchases',
+                data: purchaseDataArrayBar,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+              },
+              {
+                label: 'Sales',
+                data: salesDataArrayBar,
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1
+              }
+            ]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+
+        // Line Chart
+        const lineCtx = document.getElementById('chart-line').getContext('2d');
+        const lineChart = new Chart(lineCtx, {
+          type: 'line',
+          data: {
+            labels: labelsLine,
+            datasets: [
+              {
+                label: 'Purchases',
+                data: purchaseDataArrayLine,
+                fill: false,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2
+              },
+              {
+                label: 'Sales',
+                data: salesDataArrayLine,
+                fill: false,
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 2
+              }
+            ]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      } catch (error) {
+        console.error("Error fetching data from Firestore:", error);
+      }
+    });
+
+
+    // Function to display existing employees in the table
+    const displayEmployees = async () => {
+      const employeeTableBody = document.getElementById('employee-table-body');
+      try {
+        // Retrieve existing employees from Firestore
+        const querySnapshot = await getDocs(collection(firestore, 'employees'));
+
+        // Clear existing table rows
+        employeeTableBody.innerHTML = '';
+
+        // Populate table with employee data
+        querySnapshot.forEach((doc) => {
+          const employee = doc.data();
+          const row = `
+                        <tr id="${doc.id}" class="employee-row">
+                            <!-- Remove the <td> for Employee ID -->
+                            <td>${employee.name} ${employee.middleName} ${employee.lastName}</td>
+                            <td>${employee.role}</td>
+                            <td>
+                                <button type="button" class="btn btn-primary edit-btn">Edit</button> <!-- Added Edit button -->
+                                <button type="button" class="btn btn-danger delete-btn">Delete</button>
+
+                            </td>
+                        </tr>
+                    `;
+          employeeTableBody.innerHTML += row;
+        });
+        // Attach event listeners to each delete button
+        const deleteButtons = document.querySelectorAll('.delete-btn');
+        deleteButtons.forEach((button) => {
+          button.addEventListener('click', async () => {
+            const employeeId = button.parentElement.parentElement.id;
+            console.log('Clicked delete button for employee ID:', employeeId);
+
+            // Show confirmation modal
+            $('#confirmDeleteModal').modal('show');
+
+            // Attach event listener to confirm deletion
+            document.getElementById('confirm-delete-btn').addEventListener('click', async () => {
+              // Delete employee only if confirmed
+              await deleteEmployee(employeeId);
+              // Close the confirmation modal
+              $('#confirmDeleteModal').modal('hide');
+            });
+          });
+        });
+
+        // Attach event listeners to each edit button
+        const editButtons = document.querySelectorAll('.edit-btn');
+        editButtons.forEach((button) => {
+          button.addEventListener('click', async () => {
+            const employeeId = button.parentElement.parentElement.id;
+            console.log('Clicked edit button for employee ID:', employeeId);
+
+            // Retrieve employee details and open edit modal
+            await openEditModal(employeeId);
+          });
+        });
+
+
+      } catch (error) {
+        console.error("Error displaying employees:", error);
+      }
+    };
+
+    const displayPurchaseOrder = async () => {
+      const purchaseOrderTableBody = document.getElementById('purchase-order-table-body');
+      try {
+        // Retrieve existing employees from Firestore
+        const querySnapshot = await getDocs(collection(firestore, 'purchases'));
+
+        // Clear existing table rows
+        purchaseOrderTableBody.innerHTML = '';
+
+        // Populate table with employee data
+        querySnapshot.forEach((doc) => {
+          const purchases = doc.data();
+          const datetime = purchases.datetime.toDate();
+          const date = datetime.toDateString();
+          const time = datetime.toLocaleTimeString('en-US', { timeZone: 'Asia/Hong_Kong' })
+          const row = `
+                        <tr id="${doc.id}" class="purchase-order-row">
+                            <!-- Remove the <td> for Employee ID -->
+                            <td>${date}</td>
+                            <td>${time}</td>
+                            <td>${purchases.amount}</td>
+                            <td>${purchases.comment}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger purchase-order-delete-btn">Delete</button>
+                            </td>
+                        </tr>
+                    `;
+          purchaseOrderTableBody.innerHTML += row;
+        });
+
+        const deleteButtons = document.querySelectorAll('.purchase-order-delete-btn');
+        deleteButtons.forEach((button) => {
+          button.addEventListener('click', async () => {
+            const purchaseOrderId = button.parentElement.parentElement.id;
+            console.log('Clicked delete button for purchase order ID:', purchaseOrderId);
+
+            // Show confirmation modal
+            $('#confirmDeletePurchaseOrderModal').modal('show');
+
+            // Attach event listener to confirm deletion
+            document.getElementById('confirm-purchase-order-delete-btn').addEventListener('click', async () => {
+              // Delete employee only if confirmed
+              await deletePurchaseOrder(purchaseOrderId);
+              // Close the confirmation modal
+              $('#confirmDeletePurchaseOrderModal').modal('hide');
+            });
+          });
+        });
+
+      } catch (error) {
+        console.error("Error displaying purchase orders:", error);
+      }
+    };
+
+    const displayOrderListing = async () => {
+      const orderListingTableBody = document.getElementById('order-listing-table-body');
+      try {
+        // Retrieve existing employees from Firestore
+        const querySnapshot = await getDocs(collection(firestore, 'foods'));
+
+        // Clear existing table rows
+        orderListingTableBody.innerHTML = '';
+
+        // Populate table with order listing data
+        querySnapshot.forEach(async (doc) => {
+          const orderListing = doc.data();
+          const orderListingTag = orderListing.tag;
+
+          const itemsCollectionRef = collection(firestore, 'foods', doc.id, 'items');
+
+          const itemsQuerySnapshot = await getDocs(itemsCollectionRef);
+
+          itemsQuerySnapshot.forEach((itemDoc) => {
+            const item = itemDoc.data();
+
+
+            const row = `
+                <tr id="${itemDoc.id}" class="order-listing-row">
+                    <td>${orderListingTag}</td>
+                    <td>${item.dish}</td>
+                    <td>${item.price}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary order-details-edit-btn" data-order-tag-id="${doc.id}">Edit</button> <!-- Added Edit button -->
+                        <button type="button" class="btn btn-danger order-details-delete-btn" data-order-tag-id="${doc.id}">Delete</button>
+                    
+                    </td>
+                </tr>
+            `;
+            orderListingTableBody.innerHTML += row;
+          });
+
+          const deleteButtons = document.querySelectorAll('.order-details-delete-btn');
+          deleteButtons.forEach((button) => {
+            button.addEventListener('click', async () => {
+              const orderTagId = button.getAttribute('data-order-tag-id');
+              const orderDetailId = button.parentElement.parentElement.id;
+              console.log('Clicked delete button for employee ID:', orderDetailId);
+
+              // Show confirmation modal
+              $('#confirmOrderListingDeleteModal').modal('show');
+
+              // Attach event listener to confirm deletion
+              document.getElementById('confirm-order-listing-delete-btn').addEventListener('click', async () => {
+                // Delete employee only if confirmed
+                await deleteOrderDetails(orderTagId, orderDetailId);
+                // Close the confirmation modal
+                $('#confirmOrderListingDeleteModal').modal('hide');
+              });
+            });
+          });
+
+          const editButtons = document.querySelectorAll('.order-details-edit-btn');
+          editButtons.forEach((button) => {
+            button.addEventListener('click', async () => {
+              const orderTagId = button.getAttribute('data-order-tag-id');
+              const orderDetailId = button.parentElement.parentElement.id;
+              console.log('Clicked edit button for order detail ID:', orderDetailId);
+
+              // Retrieve employee details and open edit modal
+              await openEditOrderDetailsModal(orderTagId, orderDetailId);
+            });
+          });
+
+        });
+
+      } catch (error) {
+        console.error("Error displaying order listing:", error);
+      }
+    };
+
+    const displayPurchaseReport = async () => {
+      const purchaseReportTableBody = document.getElementById('purchase-report-table-body');
+      try {
+        // Retrieve existing employees from Firestore
+        const querySnapshot = await getDocs(collection(firestore, 'purchases'));
+
+        // Clear existing table rows
+        purchaseReportTableBody.innerHTML = '';
+
+        // Populate table with employee data
+        querySnapshot.forEach((doc) => {
+          const purchases = doc.data();
+          const datetime = purchases.datetime.toDate();
+          const date = datetime.toDateString();
+          const time = datetime.toLocaleTimeString('en-US', { timeZone: 'Asia/Hong_Kong' })
+          const row = `
+                        <tr id="${doc.id}" class="purchase-order-row">
+                            <!-- Remove the <td> for Employee ID -->
+                            <td>${date}</td>
+                            <td>${time}</td>
+                            <td>${purchases.amount}</td>
+                            <td>${purchases.comment}</td>
+                        </tr>
+                    `;
+          purchaseReportTableBody.innerHTML += row;
+        });
+
+      } catch (error) {
+        console.error("Error displaying purchase reports:", error);
+      }
+    };
+
+    const displaySalesReport = async () => {
+      const salesReportTableBody = document.getElementById('sales-report-table-body');
+      try {
+        // Retrieve sales documents from Firestore
+        const salesCollectionRef = collection(firestore, 'sales');
+        const querySnapshot = await getDocs(salesCollectionRef);
+
+        // Clear existing table rows
+        salesReportTableBody.innerHTML = '';
+
+        querySnapshot.forEach(async (doc) => {
+          const salesListing = doc.data();
+          const salesListingStatus = salesListing.status;
+          const salesDateTime = salesListing.date.toDate();
+          const salesTotal = salesListing.total;
+          const date = salesDateTime.toDateString();
+          const time = salesDateTime.toLocaleTimeString('en-US', { timeZone: 'Asia/Hong_Kong' });
+
+          if (salesListingStatus === 'bill-out') {
+            const row = `
+              <tr id="${doc.id}" class="sales-listing-row">
+                <td>${date}</td>
+                <td>${time}</td>
+                <td>${salesTotal}</td>
+                <td>
+                  <button type="button" class="btn btn-primary details-btn" data-order-id="${doc.id}">Details</button>
+                </td>
+              </tr>
+            `;
+            salesReportTableBody.innerHTML += row;
+          }
+        });
+
+        // Attach event listeners to the details buttons
+        const detailsButtons = document.querySelectorAll('.details-btn');
+        detailsButtons.forEach((button) => {
+          button.addEventListener('click', async () => {
+            const orderId = button.dataset.orderId;
+            console.log(orderId);
+            await displayDetails(orderId);
+          });
+        });
+      } catch (error) {
+        console.error("Error displaying sales listing:", error);
+      }
+    };
+
+    // Attach event listener for the delete button outside the displayEmployees() function
+    document.addEventListener('click', async (event) => {
+      const target = event.target;
+      if (target.classList.contains('delete-btn')) {
+        const employeeId = target.parentElement.parentElement.id;
+        console.log('Clicked delete button for employee ID:', employeeId);
+
+        // Show confirmation modal
+        $('#confirmDeleteModal').modal('show');
+
+        // Attach event listener to confirm deletion
+        document.getElementById('confirm-delete-btn').addEventListener('click', async () => {
+          // Delete employee only if confirmed
+          await deleteEmployee(employeeId);
+          // Close the confirmation modal
+          $('#confirmDeleteModal').modal('hide');
+        });
+      }
+    });
+
+    const displayDetails = async (orderId) => {
+      try {
+        // Clear any existing details
+        const detailsModalBody = document.getElementById('details-modal-body');
+        detailsModalBody.innerHTML = '';
+
+        // Retrieve the order document to check its status
+        const orderDocRef = doc(firestore, 'sales', orderId);
+        const orderDocSnap = await getDoc(orderDocRef);
+
+        if (orderDocSnap.exists()) {
+          const orderData = orderDocSnap.data();
+          if (orderData.status === 'bill-out') {
+            // Retrieve details subcollection for this order
+            const detailsCollectionRef = collection(firestore, 'sales', orderId, 'details');
+            const detailsQuerySnapshot = await getDocs(detailsCollectionRef);
+
+            console.log('Details Query Snapshot:', detailsQuerySnapshot.docs);
+
+            // Populate modal with details
+            detailsQuerySnapshot.forEach((doc) => {
+              const detailsData = doc.data();
+              console.log(detailsData);
+              const { dish, qty, total } = detailsData;
+
+              // Create a row for each detail item
+              const row = `
+                <tr>
+                  <td>${dish}</td>
+                  <td>${qty}</td>
+                  <td>${total}</td>
+                </tr>
+              `;
+              detailsModalBody.innerHTML += row;
+            });
+
+            // Show the details modal
+            $('#detailsModal').modal('show');
+          } else {
+            console.log('Order status is not "paid".');
+          }
+        } else {
+          console.log('No such document!');
+        }
+      } catch (error) {
+        console.error("Error displaying sales report details:", error);
+      }
+    };
+
+    const openEditModal = async (employeeId) => {
+      try {
+        const docSnapshot = await getDoc(doc(firestore, 'employees', employeeId));
+        const employee = docSnapshot.data();
+
+        // Populate the modal body with employee details
+        document.getElementById('employee-id-view').value = employeeId; // Set the Firestore document ID in the modal
+        document.getElementById('employee-name-view').value = employee.name;
+        document.getElementById('employee-middle-name-view').value = employee.middleName;
+        document.getElementById('employee-last-name-view').value = employee.lastName;
+        document.getElementById('employee-role-view').value = employee.role;
+        document.getElementById('employee-contact-view').value = employee.contact;
+        document.getElementById('employee-address-view').value = employee.address;
+        document.getElementById('employee-email-view').value = employee.email;
+        document.getElementById('employee-password-view').value = employee.password; // Populate the password field
+
+        // Display the modal
+        $('#employeeDetailsModal').modal('show');
+      } catch (error) {
+        console.error("Error getting employee details:", error);
+      }
+    };
+
+    const openEditOrderDetailsModal = async (orderDetailTagId, orderDetailId) => {
+      try {
+        const docRef = doc(firestore, 'foods', orderDetailTagId, 'items', orderDetailId);
+        const tagRef = doc(firestore, 'foods', orderDetailTagId);
+    
+        const docSnapshot = await getDoc(docRef);
+        const tagSnapshot = await getDoc(tagRef);
+    
+        // Check if the orderDetail document exists
+        if (!docSnapshot.exists()) {
+          console.error("Order detail document not found:", orderDetailId);
+          return;
+        }
+    
+        // Check if the tag document exists
+        if (!tagSnapshot.exists()) {
+          console.error("Tag document not found:", orderDetailTagId);
+          return;
+        }
+    
+        const orderDetail = docSnapshot.data();
+        const tagDetail = tagSnapshot.data();
+    
+        // Log the retrieved data
+        console.log("Order Detail:", orderDetail);
+        console.log("Tag Detail:", tagDetail);
+    
+        // Populate the modal body with order details
+        document.getElementById('order-listing-id-view').value = orderDetailId; // Set the Firestore document ID in the modal
+        document.getElementById('order-listing-tag-id-view').value = orderDetailTagId;
+        document.getElementById('order-listing-category-view').value = tagDetail.tag; 
+        document.getElementById('order-listing-name-view').value = orderDetail.dish;
+        document.getElementById('order-listing-price-view').value = orderDetail.price;
+    
+        // Display the modal
+        $('#orderListingDetailsModal').modal('show');
+      } catch (error) {
+        console.error("Error getting order listing details:", error);
+      }
+    };
+
+
+    // Function to add a new employee to Firestore
+    const addEmployee = async (name, middleName, lastName, role, contact, address, email, password) => {
+      try {
+        // Add employee to Firestore
+        await addDoc(collection(firestore, 'employees'), {
+          name: name,
+          middleName: middleName,
+          lastName: lastName,
+          role: role,
+          contact: contact,
+          address: address,
+          email: email,
+          password: password // Include password field
+        });
+
+        // Create a new user account with email and password using Firebase Authentication
+        await createUserWithEmailAndPassword(auth, email, password);
+
+        console.log('Employee added successfully');
+        // Refresh the table to reflect the changes
+        displayEmployees();
+      } catch (error) {
+        console.error('Error adding employee:', error);
+      }
+    };
+
+    const addPurchaseOrder = async (datetime, amount, comment) => {
+      try {
+        const timestamp = Timestamp.fromDate(new Date(datetime));
+        // Add employee to Firestore
+        await addDoc(collection(firestore, 'purchases'), {
+          datetime: timestamp,
+          amount: parseFloat(amount),
+          comment: comment
+        });
+
+        console.log('Purchase Order added successfully');
+        // Refresh the table to reflect the changes
+        displayPurchaseOrder();
+      } catch (error) {
+        console.error('Error adding purchase order:', error);
+      }
+    };
+
+    const addOrderListing = async (tag, dish, price) => {
+      try {
+        // Reference to the foods collection
+        const foodsCollectionRef = collection(firestore, 'foods');
+
+        // Query to find a document with the specified tag
+        const querySnapshot = await getDocs(query(foodsCollectionRef, where('tag', '==', tag)));
+
+        let docRef;
+        if (querySnapshot.empty) {
+          // If no document with the specified tag exists, create a new document
+          docRef = await addDoc(foodsCollectionRef, { tag });
+          console.log(`New document created with ID: ${docRef.id}`);
+        } else {
+          // If a document with the specified tag exists, use the first matching document
+          docRef = querySnapshot.docs[0].ref;
+          console.log(`Existing document found with ID: ${docRef.id}`);
+        }
+
+        // Reference to the items subcollection
+        const itemsCollectionRef = collection(docRef, 'items');
+
+        // Add the new item to the items subcollection
+        await addDoc(itemsCollectionRef, {
+          dish: dish,
+          price: parseFloat(price) // Ensure price is stored as a number
+        });
+
+        console.log('Order item added successfully');
+        // Refresh the table to reflect the changes
+        displayOrderListing();
+      } catch (error) {
+        console.error('Error adding order item:', error);
+      }
+    };
+
+    const updateEmployee = async (employeeId, name, middleName, lastName, role, contact, address, email, password) => {
+      try {
+        const employeeRef = doc(firestore, 'employees', employeeId);
+        const employeeSnapshot = await getDoc(employeeRef);
+
+        // Check if the document exists before updating
+        if (employeeSnapshot.exists()) {
+          // Update employee document in Firestore
+          await updateDoc(employeeRef, {
+            name: name,
+            middleName: middleName,
+            lastName: lastName,
+            role: role,
+            contact: contact,
+            address: address,
+            email: email,
+            password: password // Include password field in update
+          });
+
+          console.log('Employee updated successfully:', employeeId);
+        } else {
+          console.error('Employee document not found:', employeeId);
+        }
+      } catch (error) {
+        console.error('Error updating employee:', error);
+      }
+    };
+
+    const updateOrderListing = async (tagId, orderListingId, price) => {
+      try {
+        const orderListingRef = doc(firestore, 'foods', tagId, 'items', orderListingId);
+        const orderListingSnapshot = await getDoc(orderListingRef);
+
+        // Check if the document exists before updating
+        if (orderListingSnapshot.exists()) {
+          // Update employee document in Firestore
+          await updateDoc(orderListingRef, {
+            price: price,
+          });
+
+          console.log('Order Listing updated successfully:', orderListingId);
+        } else {
+          console.error('Order Listing document not found:', orderListingId);
+        }
+      } catch (error) {
+        console.error('Error updating Order Listing:', error);
+      }
+    };
+
+    // Function to delete employee from Firestore
+    const deleteEmployee = async (employeeId) => {
+      try {
+        // Delete employee document from Firestore
+        await deleteDoc(doc(firestore, 'employees', employeeId));
+        console.log('Employee deleted successfully');
+
+        // Refresh the table to reflect the changes
+        displayEmployees();
+      } catch (error) {
+        console.error("Error deleting employee:", error);
+      }
+    };
+
+    const deletePurchaseOrder = async (purchaseOrderId) => {
+      try {
+        // Delete employee document from Firestore
+        await deleteDoc(doc(firestore, 'purchases', purchaseOrderId));
+        console.log('Purchase Order deleted successfully');
+
+        // Refresh the table to reflect the changes
+        displayEmployees();
+      } catch (error) {
+        console.error("Error deleting Purchase Order:", error);
+      }
+    };
+
+    const deleteOrderDetails = async (orderListingId, orderDetailsId) => {
+      try {
+        // Delete employee document from Firestore
+        console.log(orderListingId);
+        console.log(orderDetailsId);
+        await deleteDoc(doc(firestore, 'foods', orderListingId, 'items', orderDetailsId));
+        console.log('Purchase Order deleted successfully');
+
+        // Refresh the table to reflect the changes
+        displayOrderListing();
+      } catch (error) {
+        console.error("Error deleting Purchase Order:", error);
+      }
+    };
+
+    window.onload = () => {
+      displayEmployees();
+      displayPurchaseOrder();
+      displayOrderListing();
+      displayPurchaseReport();
+      displaySalesReport();
+
+      // Check authentication state when the page loads
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          // If user is not logged in, redirect to login page
+          window.location.href = 'index.html';
+        }
+      });
+
+
+      // Logout button event listener
+      document.getElementById('logout-btn').addEventListener('click', async () => {
+        try {
+          // Sign out the user
+          await signOut(auth);
+          // Redirect to login page
+          window.location.href = 'index.html';
+        } catch (error) {
+          console.error('Error signing out:', error);
+        }
+      });
+    };
+
+    // Event listener for save button in addEmployeeModal
+    document.getElementById('save-add-employee-btn-modal').addEventListener('click', async () => {
+      try {
+        const name = document.getElementById('employee-name').value.trim();
+        const middleName = document.getElementById('employee-middle-name').value.trim();
+        const lastName = document.getElementById('employee-last-name').value.trim();
+        const role = document.getElementById('employee-role').value.trim();
+        const contact = document.getElementById('employee-contact').value.trim();
+        const address = document.getElementById('employee-address').value.trim();
+        const email = document.getElementById('employee-email').value.trim();
+        const password = document.getElementById('employee-password').value.trim(); // Capture password input value
+
+        // Add new employee to Firestore with password
+        await addEmployee(name, middleName, lastName, role, contact, address, email, password);
+
+        // Close the modal
+        $('#addEmployeeModal').modal('hide');
+
+        // Clear form fields
+        document.getElementById('employee-name').value = '';
+        document.getElementById('employee-middle-name').value = '';
+        document.getElementById('employee-last-name').value = '';
+        document.getElementById('employee-role').value = '';
+        document.getElementById('employee-contact').value = '';
+        document.getElementById('employee-address').value = '';
+        document.getElementById('employee-email').value = '';
+        document.getElementById('employee-password').value = ''; // Clear password input
+      } catch (error) {
+        console.error('Error saving employee:', error);
+      }
+    });
+
+    document.getElementById('save-add-purchase-order-btn-modal').addEventListener('click', async () => {
+      try {
+        const datetime = document.getElementById('purchase-order-datetime').value;
+        const amount = document.getElementById('purchase-order-amount').value.trim();
+        const comment = document.getElementById('purchase-order-comment').value.trim();
+
+        // Add new employee to Firestore with password
+        await addPurchaseOrder(datetime, amount, comment);
+
+        // Close the modal
+        $('#addPurchaseOrderModal').modal('hide');
+
+        // Clear form fields
+        document.getElementById('purchase-order-datetime').value = '';
+        document.getElementById('purchase-order-amount').value = '';
+        document.getElementById('purchase-order-comment').value = '';
+      } catch (error) {
+        console.error('Error saving employee:', error);
+      }
+    });
+
+    document.getElementById('save-add-order-listing-btn-modal').addEventListener('click', async () => {
+      try {
+        const tag = document.getElementById('order-listing-category').value;
+        const name = document.getElementById('order-listing-name').value.trim();
+        const price = document.getElementById('order-listing-price').value.trim();
+
+        // Add new employee to Firestore with password
+        await addOrderListing(tag, name, price);
+
+        // Close the modal
+        $('#addOrderListingModal').modal('hide');
+
+        // Clear form fields
+        document.getElementById('order-listing-category').value = '';
+        document.getElementById('order-listing-name').value = '';
+        document.getElementById('order-listing-price').value = '';
+      } catch (error) {
+        console.error('Error saving order listing:', error);
+      }
+    });
+
+    document.getElementById('save-edit-employee-btn-view').addEventListener('click', async () => {
+      try {
+        // Retrieve input values from the modal
+        const employeeId = document.getElementById('employee-id-view').value.trim();
+        const name = document.getElementById('employee-name-view').value.trim();
+        const middleName = document.getElementById('employee-middle-name-view').value.trim();
+        const lastName = document.getElementById('employee-last-name-view').value.trim();
+        const role = document.getElementById('employee-role-view').value.trim();
+        const contact = document.getElementById('employee-contact-view').value.trim();
+        const address = document.getElementById('employee-address-view').value.trim();
+        const email = document.getElementById('employee-email-view').value.trim();
+        const password = document.getElementById('employee-password-view').value.trim(); // Retrieve updated password
+
+        // Update employee details in Firestore, including password
+        await updateEmployee(employeeId, name, middleName, lastName, role, contact, address, email, password);
+
+        // Close the modal
+        $('#employeeDetailsModal').modal('hide');
+
+        // Refresh the table to reflect the changes
+        displayEmployees(); // Call the displayEmployees function
+      } catch (error) {
+        console.error('Error saving employee details:', error);
+      }
+    });
+
+    document.getElementById('save-edit-order-listing-btn-view').addEventListener('click', async () => {
+      try {
+        // Retrieve input values from the modal
+        const tagId = document.getElementById('order-listing-tag-id-view').value.trim();
+        const orderListingId = document.getElementById('order-listing-id-view').value.trim();
+        const price = document.getElementById('order-listing-price-view').value.trim();
+
+        // Update employee details in Firestore, including password
+        await updateOrderListing(tagId, orderListingId, price);
+
+        // Close the modal
+        $('#employeeDetailsModal').modal('hide');
+
+        // Refresh the table to reflect the changes
+        displayOrderListing(); // Call the displayEmployees function
+      } catch (error) {
+        console.error('Error saving employee details:', error);
+      }
+    });
+    document.getElementById('toggle-password').addEventListener('click', function () {
+      var passwordInput = document.getElementById('employee-password-view');
+      var icon = document.getElementById('toggle-password').querySelector('i');
+
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        passwordInput.type = "password";
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
+    });
+  </script>
+  <!--   Core JS Files   -->
+  <script>
+
+    /*var ctx = document.getElementById("chart-bars").getContext("2d");
+
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+          label: "Sales",
+          tension: 0.4,
+          borderWidth: 0,
+          borderRadius: 4,
+          borderSkipped: false,
+          backgroundColor: "#fff",
+          data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
+          maxBarThickness: 6
+        },],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+            },
+            ticks: {
+              suggestedMin: 0,
+              suggestedMax: 500,
+              beginAtZero: true,
+              padding: 15,
+              font: {
+                size: 14,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+              color: "#fff"
+            },
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false
+            },
+            ticks: {
+              display: false
+            },
+          },
+        },
+      },
+    });
+
+
+    var ctx2 = document.getElementById("chart-line").getContext("2d");
+
+    var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
+    gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
+
+    var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
+    gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
+
+    new Chart(ctx2, {
+      type: "line",
+      data: {
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+          label: "Sales",
+          tension: 0.4,
+          borderWidth: 0,
+          pointRadius: 0,
+          borderColor: "#cb0c9f",
+          borderWidth: 3,
+          backgroundColor: gradientStroke1,
+          fill: true,
+          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+          maxBarThickness: 6
+
+        },
+        {
+          label: "Purchase",
+          tension: 0.4,
+          borderWidth: 0,
+          pointRadius: 0,
+          borderColor: "#3A416F",
+          borderWidth: 3,
+          backgroundColor: gradientStroke2,
+          fill: true,
+          data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+          maxBarThickness: 6
+        },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              padding: 10,
+              color: '#b2b9bf',
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#b2b9bf',
+              padding: 20,
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    }); */
+  </script>
+</body>
+
+</html>

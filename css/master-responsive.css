@@ -1,0 +1,128 @@
+#append-1, #append-2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+.card-menu {
+    width: 14rem; height: 370px;
+}
+.card-image {
+    max-width: 300px;
+    height: 200px;
+    object-fit: cover;
+  }
+
+.custom-btn-bg {
+    background-color: #ff5555 !important;
+    color: white !important;
+}
+.btn-custom:hover {
+    background-color: #ff5555b4 !important;
+    color: white !important;
+}
+
+.top-nav-sticky {
+    position: sticky !important;
+    z-index: 100;
+}
+
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-device-pixel-ratio: 2) {
+    .card-menu {
+        max-width: 100%;
+    }
+    .navbar-flex {
+        flex-direction: column;
+        justify-content: center !important;
+    }
+    #append-1, #append-2 {
+        display: flex  !important;
+        justify-content: center  !important;
+        align-items: center  !important;
+
+    }
+}
+
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 812px)
+  and (-webkit-device-pixel-ratio: 3) {
+    .title {
+        font-size: 16px;
+    }
+    .card-menu {
+        max-width: 100%;
+    }
+    .navbar-flex {
+        flex-direction: column;
+        justify-content: center !important;
+    }
+    #append-1, #append-2 {
+        display: flex !important;
+        justify-content: center  !important;
+        align-items: center  !important;
+
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .title {
+        font-size: 18px !important;
+    }
+    #append-1, #append-2 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+    }
+    /* * {
+        width: 100% !important;
+        padding: 1px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    } */
+    script {
+        display: none;
+    }
+
+    .card-menu {
+        width: 20rem; height: 400px;
+    }
+    .navbar-flex {
+        flex-direction: column;
+        justify-content: center !important;
+    }
+
+}
+.row {
+    width: 100% !important;
+}
+@media screen and (min-width: 577px) and (max-width: 992px) {
+    #append-1, #append-2 {
+        flex-wrap: wrap;
+    }
+
+    .card-menu {
+        width: 14rem; height: 350px;
+    }
+
+}
+
+@media screen and (min-width: 993px) {
+    #append-1, #append-2 {
+        flex-direction: row;
+    }
+}
+.wrapper {
+    width: 100%;
+}
+.title {
+    font-size: 28px;
+}

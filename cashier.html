@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lory's Seafood</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/master.css">
+    <!-- Other meta tags and CSS/JS links -->
+    <link rel="icon" href="images/longciomay.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/longciomay.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Top Nav Bar - START -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Profile Icon, Name and Role Container - START -->
+            <div class="profile-info col-2 text-center">
+                <div class="row">
+                    <!-- Name and Role - START -->
+                    <div class="col-12 pt-3">
+                        <div class="row">
+                            <!-- Name -->
+                            <div class="col-12 text-nowrap">
+                                <h6>VIEWING DECK 4:</h6>
+                            </div>
+                            <!-- Role -->
+                            <div class="col-12">
+                                <h6>LORY’S SEAFOOD EATERY</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Name and Role - END -->
+                </div>
+            </div>
+            <!-- Profile, Name and Role Container - END -->
+            <!-- Account Welcome and Log-out - START -->
+            <div class="logout-container col-10 text-end">
+                <div class="row">
+                    <!-- Account Welcome -->
+
+                      <!-- Navbar for Hi Admin! and Logout dropdown -->
+                    <nav class="navbar navbar-light ">
+                      <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Settings
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" id="logout-btn" href="#">Logout</a>
+                        </div>
+                      </div>
+                    </nav>
+                    <!-- Log-out -->
+
+                </div>
+            </div>
+            <!-- Account Welcome and Log-out - START -->
+        </div>
+    </div>
+    <!-- Top Nav Bar - END -->
+    <!-- Body - START -->
+        
+    <!-- Modal for Quantity -->
+    <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderModalLabel">Order Quantity</h5>
+                </div>
+                <div class="modal-body">
+                        <!-- Contents to be loaded -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="placeOrder" class="btn btn-primary" onclick="placeOrder('.details-items .row-items')" value="false"
+                    data-bs-toggle="modal" data-bs-target="#orderModal">Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Options</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Please select an action.</p>
+                </div>
+                <div class="modal-footer">
+                    <!-- Add button to change quantity -->
+                    <button type="button" class="btn btn-warning" id="changeQuantityBtn" data-bs-toggle="modal" data-bs-target="#orderModal">Change Quantity</button>
+                    <!-- Add button to delete item -->
+                    <button type="button" class="btn btn-danger" id="deleteItemBtn">Delete Item</button>
+                    <!-- Add button to close modal -->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Side Navigation -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Side Nav - START -->
+            <nav class="side-navigation col-2 d-flex flex-column">
+                <!-- New Item For Side Nav - START -->
+                <ul class="list-unstyled flex-grow-1">
+                    <li class="p-3 d-flex m-3 dashboard">
+                        <img src="images/food-icon.svg" alt="Food Icon" width="25%" height="25%">
+                        <div class="text-center flex-grow-1 pt-2">
+                            <h6>Dashboard</h6>
+                        </div>
+                    </li>
+                    <li class="p-3 d-flex m-3 sales">
+                        <img src="images/food-icon.svg" alt="Food Icon" width="25%" height="25%">
+                        <div class="text-center flex-grow-1 pt-2">
+                            <h6>Sales</h6>
+                        </div>
+                    </li>
+                    <li class="p-3 d-flex m-3 take-orders">
+                        <img src="images/food-icon.svg" alt="Food Icon" width="25%" height="25%">
+                        <div class="text-center flex-grow-1 pt-2">
+                            <h6>Take Orders</h6>
+                        </div>
+                    </li>
+                </ul>
+                <!-- New Item For Side Nav - END -->
+            </nav>
+            <!-- Side Nav - END -->
+            <!-- Dashboard - START -->
+            <!-- Dashboard - START -->
+            <div class="col-7 dashboard-content">
+                <!-- Table - START -->
+                <div class="row">
+                    <div class="col-12 text-center table-responsive" style="max-height: 600px;">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" onclick="pendingButtonAdjust()" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" onclick="completedButtonAdjust()" id="completed-tab" data-toggle="tab" href="#completed" role="tab" aria-controls="completed" aria-selected="false">Completed & Served</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" onclick="billOutButtonAdjust()" id="completed-tab" data-toggle="tab" href="#bill-out" role="tab" aria-controls="completed" aria-selected="false">Bill-out</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <!-- Pending Orders -->
+                            <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+                                <table class="table items">
+                                    <thead>
+                                        <tr>
+                                            <th>Table Number</th>
+                                            <th>Time</th>
+                                            <th>Order Number</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="pending-list">
+                                        <!-- Pending Orders List Generation Here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Completed & Served Orders -->
+                            <div class="tab-pane fade" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+                                <table class="table items">
+                                    <thead>
+                                        <tr>
+                                            <th>Table Number</th>
+                                            <th>Time</th>
+                                            <th>Order Number</th>
+                                            <th>Pending</th>
+                                            <th>Total</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="completed-list">
+                                        <!-- Completed & Served Orders List Generation Here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Bill-out Orders -->
+                            <div class="tab-pane fade" id="bill-out" role="tabpanel" aria-labelledby="bill-out-tab">
+                                <table class="table items">
+                                    <thead>
+                                        <tr>
+                                            <th>Table Number</th>
+                                            <th>Time</th>
+                                            <th>Order Number</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bill-out-list">
+                                        <!-- Completed & Served Orders List Generation Here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Table - END -->
+            </div>
+            <!-- Dashboard - END -->
+            <!-- Order List - START -->
+            <div class="detailslist-container orders col-3 text-center">
+                <div class="details-list">
+                    <div class="row">
+                        <!-- Customer ID -->
+                        <div class="col-12">
+                            <div class="customer-id m-2 pt-3 p-2">
+                                <h6><b>Table Number - #</b></h6>
+                            </div>
+                            <!-- List -->
+                        </div>
+                        <!-- Order Items -->
+                        <div class="details-items col-10 offset-1 p-3">
+                            <!-- Headers -->
+                            <div class="row mb-2">
+                                <div class="col-2 list-item p-0"><b>Qty</b></div>
+                                <div class="col-6 list-item p-0"><b>Item</b></div>
+                                <div class="col-2 list-item p-0"><b>Total</b></div>
+                                <div class="col-2 list-item p-0"><b>Act</b></div>
+                            </div>
+                            <!-- Contents -->
+                            
+                        </div>
+                        <div class="col-12 pt-3">
+                            <div class="row" id="total-list">
+                                <div class="col-12">
+                                    <h6><b>Order Total</b></h6>
+                                </div>
+                                <div class="col-12">
+                                    <h6 id="order-total">0</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="buttons-list col-12 mt-1">
+                            <div class="row">
+                                <div class="col-6">
+                                    <button class="btn btn-c btn-outline-success verify">
+                                        <img src="images/check.svg" alt="Check" height="100%" width="100%">
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-c btn-outline-danger cancel">
+                                        X
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Order List - END -->
+            <!-- Content - START -->
+            <div class="order col-7 d-none">
+                <div class="row">
+                    <div class="col-12 table-container text-center d-flex justify-content-center">
+                        <!-- Pills -->
+                        <table class="table pills">
+                            <tbody>
+                                <tr>
+                                    <td><button class="btn btn-custom btn-active" onclick="filterItems('all')" id="all">ALL</button></td>
+                                    <td><button class="btn btn-custom" onclick="filterItems('special')" id="special">SPECIAL</button></td>
+                                    <td><button class="btn btn-custom" onclick="filterItems('main')" id="main">MAIN</button></td>
+                                    <td><button class="btn btn-custom" onclick="filterItems('beverages')" id="beverages">BEVERAGES</button></td>
+                                </tr>
+                                <tr>
+                                    <td><button class="btn btn-custom" onclick="filterItems('small-orders')" id="small-orders">SMALL ORDERS</button></td>
+                                    <td><button class="btn btn-custom" onclick="filterItems('appetizers')" id="appetizers">APPETIZERS</button></td>
+                                    <td><button class="btn btn-custom" onclick="filterItems('sides')" id="sides">SIDES</button></td>
+                                    <td><button class="btn btn-custom" onclick="filterItems('desserts')" id="desserts">DESSERTS</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12 table-container text-center">
+                        <table class="table items">
+                            <tbody>
+                                <tr id="append-1">
+                                    <!-- Add more cells as needed -->
+                                </tr>
+                                <tr id="append-2">
+                                    <!-- Add more cells as needed -->
+                                </tr>
+                                <!-- Add more rows as needed -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Content - END -->
+            <!-- Order List - START -->
+            <div class="orderlist-container col-3 text-center">
+                <div class="order-list">
+                    <div class="row">
+                        <!-- Customer ID -->
+                        <div class="col-12">
+                            <div class="customer-id m-2 pt-3 p-2">
+                                <h6><b>Table Number - #</b></h6>
+                            </div>
+                            <!-- List -->
+                        </div>
+                        <!-- Order Items -->
+                        <div class="order-items col-10 offset-1 p-3">
+                            <!-- Headers -->
+                            <div class="row mb-2">
+                                <div class="col-2 list-item p-0"><b>Qty</b></div>
+                                <div class="col-6 list-item p-0"><b>Item</b></div>
+                                <div class="col-2 list-item p-0"><b>Total</b></div>
+                                <div class="col-2 list-item p-0"><b>Act</b></div>
+                            </div>
+                            <!-- Contents -->
+                            
+                        </div>
+                        <div class="col-12 pt-3">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h6><b>Order Total</b></h6>
+                                </div>
+                                <div class="col-12 order-total">
+                                    <h6 id="order-total-list">0</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-1">
+                            <button class="btn btn-c btn-outline-success" onclick="submit()">
+                                <img src="images/check.svg" alt="Check" height="100%" width="100%">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Order List - END -->
+            <!-- Sales - START -->
+            <div class="sales-container col-7 text-center">
+                <div class="row">
+                    <nav class="navbar navbar-light col-10 offset-1 text-center">
+                        <div class="dropdown col-3 offset-3">
+                            <button class="btn btn-outline-success btn-lg dropdown-toggle" type="button" id="periodDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                Day
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="periodDropdown">
+                                <a class="dropdown-item" href="#" id="dayOption" onclick="populateValueDropdown('day'); changeText('periodDropdown','Day'); getSales('day', '')">Day</a>
+                                <a class="dropdown-item" href="#" id="weekOption" onclick="populateValueDropdown('week'); changeText('periodDropdown','Week')">Week</a>
+                                <a class="dropdown-item" href="#" id="monthOption" onclick="populateValueDropdown('month'); changeText('periodDropdown','Month')">Month</a>
+                                <a class="dropdown-item" href="#" id="yearOption" onclick="populateValueDropdown('year'); changeText('periodDropdown','Year')">Year</a>
+                            </div>
+                        </div>
+                        <div class="dropdown col-3">
+                            <button class="btn btn-outline-info dropdown-toggle" type="button" id="valueDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                Select
+                            </button>                            
+                            <div class="dropdown-menu valueDropdownMenu" aria-labelledby="valueDropdown" id="valueDropdownMenu">
+                                <!-- Options will be dynamically added here based on the selected period -->
+                            </div>
+                        </div>
+                        <div class="col-3"></div>
+                    </nav>
+                    <table class="table items">
+                        <thead>
+                            <!-- Format if Verification -->
+                            <tr>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Table ID</th>
+                                <th>Customer ID</th>
+                                <th>Total Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sales-items">
+                            <!-- List Generation Here --> 
+                            <!-- Proceed to generate the list of items -->  
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="salesdetails-container col-3 text-center">
+                <div class="salesdetails-list">
+                    <div class="row">
+                        <!-- Customer ID -->
+                        <div class="col-12">
+                            <div class="customer-id m-2 pt-3 p-2">
+                                <h6><b>Table Number - #</b></h6>
+                            </div>
+                            <!-- List -->
+                        </div>
+                        <!-- Order Items -->
+                        <div class="salesdetails-items col-10 offset-1 p-3">
+                            <!-- Headers -->
+                            <div class="row mb-2">
+                                <div class="col-2 list-item p-0"><b>Qty</b></div>
+                                <div class="col-6 list-item p-0"><b>Item</b></div>
+                                <div class="col-2 list-item p-0"><b>Total</b></div>
+                                <div class="col-2 list-item p-0"><b>Act</b></div>
+                            </div>
+                            <!-- Contents -->
+                        </div>
+                        <div class="col-12 pt-3">
+                            <div class="row" id="sales-list">
+                                <div class="col-12">
+                                    <h6><b>Order Total</b></h6>
+                                </div>
+                                <div class="col-12">
+                                    <h6 id="order-total-sales">0</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sales - END -->
+        </div>
+    </div>
+    <!-- Body - END -->
+    <!-- Scripts -->
+    <script type="text/javascript">
+        window.onbeforeunload = function() {
+            return "Dude, are you sure you want to leave? Think of the kittens!";
+        }
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-firestore.js"></script>
+    <script src="js/firestore.js"></script>
+    <script src="js/ordering.js"></script>
+    <script src="js/sales.js"></script>
+    <script src="js/cashier.js"></script>
+    <script src="js/cashierdatatransfer.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+
+    <!-- Bootstrap and Firebase Scripts -->
+<script type="module" src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script type="module" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Firebase Auth Script -->
+<script type="module" src="https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js"></script>
+
+<script type="module">
+    // Import Firebase authentication functions
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+    import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDT4iaPdleCjt7K2AYVDfEaZOi6UqDHCDU",
+    authDomain: "lory-c64ec.firebaseapp.com",
+    projectId: "lory-c64ec",
+    storageBucket: "lory-c64ec.appspot.com",
+    messagingSenderId: "371071401749",
+    appId: "1:371071401749:web:f5f5ef959488fcfd78b31c",
+    measurementId: "G-TXBTQ3L6XE"
+  };
+// Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const firestore = getFirestore(app);
+
+
+
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            // If user is not logged in, redirect to login page
+            window.location.href = 'index.html';
+        }
+    });
+
+    // Logout button event listener
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+        try {
+            // Sign out the user
+            await signOut(auth);
+            // Redirect to login page
+            window.location.href = 'index.html';
+        } catch (error) {
+            console.error('Error signing out:', error);
+        }
+    });
+</script>
+</body>
+</html>
