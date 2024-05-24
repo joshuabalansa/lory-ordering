@@ -1,5 +1,5 @@
     body {
-      background: linear-gradient(to right, #9dc896, #30ab97);
+      background: #ff5555;
       overflow: hidden; /* Prevent page from being scrollable */
     }
     .carousel-item img {

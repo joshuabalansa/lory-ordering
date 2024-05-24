@@ -28,7 +28,7 @@ function generateHTMLContent(itemName, itemPrice) {
             </div>
             <div class="row">
                 <div class="col-12 d-grid mx-auto m-2">
-                    <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#orderModal" data-item-name="${itemName}" data-item-price="${itemPrice}">Order</button>
+                    <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#orderModal" data-item-name="${itemName}" data-item-price="${itemPrice}">Order</button>
                 </div>
             </div>
         </td>`;

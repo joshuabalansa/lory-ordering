@@ -13,34 +13,25 @@
   <link rel="stylesheet" href="css/master.css">
 </head>
 <body onload="checkOnload()">
-  <!-- Top Nav Bar - START -->
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Profile Icon, Name and Role Container - START -->
-            <div class="profile-info col-2 text-center">
+    <div class="container-fluid d-flex justify-content-around mb-3" style="background: #ff5555;">
+            <div class="profile-info text-center">
                 <div class="row">
-                    <!-- Name and Role - START -->
                     <div class="col-12 pt-3">
                         <div class="row">
-                            <!-- Name -->
                             <div class="col-12 text-nowrap">
                                 <h6>VIEWING DECK 4:</h6>
                             </div>
-                            <!-- Role -->
+                       
                             <div class="col-12">
                                 <h6>LORY’S SEAFOOD EATERY</h6>
                             </div>
                         </div>
                     </div>
-                    <!-- Name and Role - END -->
+                  
                 </div>
             </div>
-            <!-- Profile, Name and Role Container - END -->
-            <!-- Account Welcome and Log-out - START -->
-            <div class="logout-container col-10 text-end">
+            <div class="logout-container text-end" style="background: #ff5555;">
                 <div class="row">
-
-                      <!-- Navbar for Hi Admin! and Logout dropdown -->
                     <nav class="navbar navbar-light ">
                       <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -53,8 +44,6 @@
                     </nav>
                 </div>
             </div>
-            <!-- Account Welcome and Log-out - START -->
-        </div>
     </div>
     <!-- Top Nav Bar - END -->
     <!-- Body - START -->
@@ -103,10 +92,8 @@
 
     <!-- Side Navigation -->
     <div class="container-fluid">
-        <div class="row">
-            <!-- Side Nav - START -->
-            <nav class="side-navigation col-2 d-flex flex-column">
-                <!-- New Item For Side Nav - START -->
+        <div class="wrapper d-flex justify-content-evenly">
+            <!-- <nav class="side-navigation col-2 d-flex flex-column">
                 <ul class="list-unstyled flex-grow-1">
                     <li class="p-3 d-flex m-3">
                         <img src="images/food-icon.svg" alt="Food Icon" width="25%" height="25%">
@@ -115,8 +102,7 @@
                         </div>
                     </li>
                 </ul>
-                <!-- New Item For Side Nav - END -->
-            </nav>
+            </nav> -->
             <!-- Side Nav - END -->
             <!-- Content - START -->
             <div class="col-7">
@@ -124,14 +110,12 @@
                     <div class="col-12 table-container text-center d-flex justify-content-center">
                         <!-- Pills -->
                         <table class="table pills">
-                            <tbody>
-                                <tr>
+                            <tbody style="display: flex; justify-content: center;">
+                                <tr style="display: flex; flex-wrap: wrap;">
                                     <td><button class="btn btn-custom btn-active" onclick="filterItems('all')" id="all">ALL</button></td>
                                     <td><button class="btn btn-custom" onclick="filterItems('special')" id="special">SPECIAL</button></td>
                                     <td><button class="btn btn-custom" onclick="filterItems('main')" id="main">MAIN</button></td>
                                     <td><button class="btn btn-custom" onclick="filterItems('beverages')" id="beverages">BEVERAGES</button></td>
-                                </tr>
-                                <tr>
                                     <td><button class="btn btn-custom" onclick="filterItems('small-orders')" id="small-orders">SMALL ORDERS</button></td>
                                     <td><button class="btn btn-custom" onclick="filterItems('appetizers')" id="appetizers">APPETIZERS</button></td>
                                     <td><button class="btn btn-custom" onclick="filterItems('sides')" id="sides">SIDES</button></td>
@@ -155,10 +139,8 @@
                     </div>
                 </div>
             </div>
-            <!-- Content - END -->
-            <!-- Order List - START -->
-            <div class="orderlist-container col-3 text-center">
-                <div class="order-list">
+    
+            <div class="orderlist-container order-list text-center text-white p-4" style="width: 300px;">
                     <div class="row">
                         <!-- Customer ID -->
                         <div class="col-12">
@@ -168,7 +150,7 @@
                             <!-- List -->
                         </div>
                         <!-- Order Items -->
-                        <div class="order-items col-10 offset-1 p-3">
+                        <div class="order-items col-10 offset-1 p-3" style="font-size: 30px;">
                             <!-- Headers -->
                             <div class="row mb-2">
                                 <div class="col-3 list-item p-0"><b>Qty</b></div>
@@ -190,14 +172,13 @@
                         </div>
                         <div class="col-12 mt-1">
                             <!-- <button class="btn btn-c btn-outline-success" onclick="submit()"> -->
-                            <button class="btn btn-c btn-outline-success" onclick="copyRowItems('place-order', 'place-order-total')" data-toggle="modal" data-target="#confirmOrder">
+                            <button style="cursor: pointer !important;" class="btn btn-c btn-outline-secondary" onclick="copyRowItems('place-order', 'place-order-total')" data-toggle="modal" data-target="#confirmOrder">
                                 <img src="images/check.svg" alt="Check" height="100%" width="100%">
                             </button>
                         </div>
-                    </div>
                 </div>
             </div>
-            <!-- Order List - END -->
+
             <!-- Modal -->
             <div class="modal fade" id="confirmOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
